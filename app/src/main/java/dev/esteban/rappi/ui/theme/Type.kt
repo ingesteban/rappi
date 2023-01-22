@@ -21,8 +21,8 @@ private val PoppinsFontFamily = FontFamily(
 
 val h1Typography: TextStyle = TextStyle(
     fontFamily = PoppinsFontFamily,
-    fontSize = 24.sp,
-    fontWeight = FontWeight.Bold,
+    fontSize = 16.sp,
+    fontWeight = FontWeight.SemiBold,
     color = Color.White
 )
 

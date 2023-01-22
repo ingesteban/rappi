@@ -14,10 +14,9 @@ import dev.esteban.rappi.views.movies.MoviesNavigation
 @Composable
 fun RappiApp() {
     val navController = rememberNavController()
-    var startDestination: String = MoviesNavigation.route
     Scaffold(backgroundColor = RappiTheme.colors.black20) { innerPadding ->
         NavHost(
-            navController = navController, startDestination = startDestination,
+            navController = navController, startDestination = MoviesNavigation.route,
             Modifier.padding(innerPadding)
         ) {
             ScreenNavigation.allScreens.forEach { screen ->

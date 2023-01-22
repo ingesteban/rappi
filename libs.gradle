@@ -20,6 +20,8 @@ ext {
                     'composeui'        : "1.2.1",
                     'gson'             : "2.9.1",
                     'room'             : "2.4.3",
+                    'livedatacorektx'  : "2.5.1",
+                    'coroutinesandroid': "1.6.4",
             ],
             'test'          : [
                     'junit'    : "4.13.2",
@@ -35,6 +37,8 @@ ext {
             'activitycompose'     : "androidx.activity:activity-compose:${versions.libs.activitycompose}",
             'runtimektx'          : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.libs.runtimektx}",
             'navigationcompose'   : "androidx.navigation:navigation-compose:${versions.libs.navigationcompose}",
+            'livedatacorektx'     : "androidx.lifecycle:lifecycle-livedata-core-ktx:${versions.libs.livedatacorektx}",
+            'coroutinesandroid'   : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.libs.coroutinesandroid}",
             'composeui'           : "androidx.compose.ui:ui:${versions.libs.composeui}",
             'composematerial'     : "androidx.compose.material:material:${versions.libs.composeui}",
             'composeuipreview'    : "androidx.compose.ui:ui-tooling-preview:${versions.libs.composeui}",
@@ -58,7 +62,7 @@ ext {
             'composetooling' : "androidx.compose.ui:ui-tooling:${versions.test.composeui}",
             'composemanifest': "androidx.compose.ui:ui-test-manifest:${versions.test.composeui}",
             'junitrunner'    : "androidx.test.runner.AndroidJUnitRunner",
-            'consumerrules'  : "consumer-rules.pr",
+            'consumerrules'  : "consumer-rules.pro",
     ]
 
     plugins = [
