@@ -1,0 +1,77 @@
+apply plugin: rootProject.ext.plugins.application
+apply plugin: rootProject.ext.plugins.kotlin
+apply plugin: rootProject.ext.plugins.kapt
+apply plugin: rootProject.ext.plugins.parcelize
+
+android {
+    namespace rootProject.ext.app.id
+    compileSdkVersion rootProject.ext.app.compileSdkVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.app.id
+        minSdkVersion rootProject.ext.app.minSdk
+        targetSdkVersion rootProject.ext.app.targetSdkVersion
+        versionCode rootProject.ext.app.versionCode
+        versionName rootProject.ext.app.versionName
+        testInstrumentationRunner rootProject.ext.test.jUnitRunner
+
+
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.3.2"
+    }
+
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation rootProject.ext.libs.ktx
+
+    implementation rootProject.ext.libs.composeui
+    implementation rootProject.ext.libs.composematerial
+    implementation rootProject.ext.libs.composeuipreview
+    implementation rootProject.ext.libs.runtimektx
+    implementation rootProject.ext.libs.activitycompose
+    implementation rootProject.ext.libs.composematerialicons
+    implementation rootProject.ext.libs.navigationcompose
+
+    kapt rootProject.ext.libs.roomcompiler
+
+    implementation rootProject.ext.libs.gson
+
+    testImplementation rootProject.ext.test.junit
+    androidTestImplementation rootProject.ext.test.extJunit
+    androidTestImplementation rootProject.ext.test.espresso
+    androidTestImplementation rootProject.ext.test.composejunit
+    debugImplementation rootProject.ext.test.composetooling
+    debugImplementation rootProject.ext.test.composemanifest
+}
