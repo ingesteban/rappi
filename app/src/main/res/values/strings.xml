@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Rappi</string>
+
+    <string name="title_up_coming_movies">Próximos estrenos</string>
+    <string name="title_top_rated_movies">Tendencia</string>
+    <string name="title_recommended_movies">Recomendados para ti</string>
+    <string name="filter_released_at">Lanzadas en</string>
+    <string name="filter_released_at_default">Cualquier año</string>
+    <string name="filter_language">En</string>
+    <string name="filter_language_default">Cualquier idioma</string>
 </resources>

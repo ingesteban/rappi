@@ -2,13 +2,21 @@ apply plugin: rootProject.ext.plugins.library
 apply plugin: rootProject.ext.plugins.kotlinandroid
 apply plugin: rootProject.ext.plugins.kapt
 apply plugin: rootProject.ext.plugins.parcelize
+apply plugin: rootProject.ext.plugins.kserialization
+apply plugin: rootProject.ext.plugins.hiltandroid
+
 android {
-    namespace 'dev.esteban.movies'
+    namespace rootProject.ext.app.moviesid
     compileSdk rootProject.ext.app.compileSdkVersion
 
     defaultConfig {
         minSdk rootProject.ext.app.minSdk
         targetSdk rootProject.ext.app.targetSdkVersion
+
+        buildConfigField "String", "BASE_URL", '"https://api.themoviedb.org/3/"'
+        buildConfigField "String", "IMAGE_BASE_URL", '"https://image.tmdb.org/t/p/w500/"'
+        buildConfigField "String", "MOVIE_UPCOMING", '"movie/upcoming"'
+        buildConfigField "String", "MOVIE_TOP_RATED", '"movie/top_rated"'
 
         testInstrumentationRunner rootProject.ext.test.junitrunner
         consumerProguardFiles rootProject.ext.test.consumerrules
@@ -41,4 +49,13 @@ dependencies {
 
     testImplementation rootProject.ext.test.junit
     androidTestImplementation rootProject.ext.test.extJunit
+
+    implementation rootProject.ext.libs.okhttp3
+    implementation rootProject.ext.libs.kotlinserialization
+
+    implementation rootProject.ext.libs.retrofit
+    implementation rootProject.ext.libs.retrofitserialization
+
+    implementation rootProject.ext.libs.hiltandroid
+    kapt rootProject.ext.libs.hiltcompiler
 }

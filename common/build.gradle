@@ -1,8 +1,10 @@
 apply plugin: rootProject.ext.plugins.library
 apply plugin: rootProject.ext.plugins.kotlinandroid
+apply plugin: rootProject.ext.plugins.kapt
+apply plugin: rootProject.ext.plugins.hiltandroid
 
 android {
-    namespace rootProject.ext.app.id
+    namespace rootProject.ext.app.commonid
     compileSdkVersion rootProject.ext.app.compileSdkVersion
 
     defaultConfig {
@@ -32,4 +34,7 @@ dependencies {
     implementation rootProject.ext.libs.ktx
     implementation rootProject.ext.libs.livedatacorektx
     implementation rootProject.ext.libs.coroutinesandroid
+
+    implementation rootProject.ext.libs.hiltandroid
+    kapt rootProject.ext.libs.hiltcompiler
 }

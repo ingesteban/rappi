@@ -2,6 +2,7 @@ apply plugin: rootProject.ext.plugins.application
 apply plugin: rootProject.ext.plugins.kotlin
 apply plugin: rootProject.ext.plugins.kapt
 apply plugin: rootProject.ext.plugins.parcelize
+apply plugin: rootProject.ext.plugins.hiltandroid
 
 android {
     namespace rootProject.ext.app.id
@@ -68,10 +69,19 @@ dependencies {
 
     implementation rootProject.ext.libs.gson
 
+    implementation rootProject.ext.libs.coilcompose
+
+    implementation rootProject.ext.libs.hiltandroid
+    implementation rootProject.ext.libs.hiltnavigationcompose
+    kapt rootProject.ext.libs.hiltcompiler
+
     testImplementation rootProject.ext.test.junit
     androidTestImplementation rootProject.ext.test.extJunit
     androidTestImplementation rootProject.ext.test.espresso
     androidTestImplementation rootProject.ext.test.composejunit
     debugImplementation rootProject.ext.test.composetooling
     debugImplementation rootProject.ext.test.composemanifest
+
+    implementation project(rootProject.ext.modules.movies)
+    implementation project(rootProject.ext.modules.common)
 }
