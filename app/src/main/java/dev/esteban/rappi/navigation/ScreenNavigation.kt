@@ -4,17 +4,17 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
+import dev.esteban.rappi.views.movie.MovieNavigation
 import dev.esteban.rappi.views.movies.MoviesNavigation
 
 interface ScreenNavigation {
 
     companion object {
         val allScreens = listOf(
-            MoviesNavigation
+            MoviesNavigation,
+            MovieNavigation
         )
     }
-
-    val title: String get() = ""
 
     val route: String
 

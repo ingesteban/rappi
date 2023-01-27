@@ -9,6 +9,8 @@ val DarkRed2 = Color(0x80800606)
 val Yellow = Color(0xFFF6C700)
 val Red = Color(0xFFDD6969)
 val Gray1 = Color(0xFF8E8E8E)
+val WhiteTransparent1 = Color(0xCCFFFFFF)
+val WhiteTransparent2 = Color(0x66FFFFFF)
 
 data class RappiColors(
     val darkRed1: Color = DarkRed1,
@@ -17,6 +19,8 @@ data class RappiColors(
     val yellow: Color = Yellow,
     val red: Color = Red,
     val gray1: Color = Gray1,
+    val whiteTransparent1: Color = WhiteTransparent1,
+    val whiteTransparent2: Color = WhiteTransparent2,
 )
 
 val LocalRappiColors = staticCompositionLocalOf { RappiColors() }

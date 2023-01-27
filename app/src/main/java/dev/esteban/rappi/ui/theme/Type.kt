@@ -36,7 +36,14 @@ val h2Typography: TextStyle = TextStyle(
 val h3Typography: TextStyle = TextStyle(
     fontFamily = PoppinsFontFamily,
     fontSize = 12.sp,
-    fontWeight = FontWeight.Normal,
+    fontWeight = FontWeight.Light,
+    color = Color.White
+)
+
+val h4Typography: TextStyle = TextStyle(
+    fontFamily = PoppinsFontFamily,
+    fontSize = 40.sp,
+    fontWeight = FontWeight.SemiBold,
     color = Color.White
 )
 
@@ -44,6 +51,7 @@ data class RappiTypography(
     val h1: TextStyle = h1Typography,
     val h2: TextStyle = h2Typography,
     val h3: TextStyle = h3Typography,
+    val h4: TextStyle = h4Typography,
 )
 
 internal val LocalRappiTypography = staticCompositionLocalOf { RappiTypography() }

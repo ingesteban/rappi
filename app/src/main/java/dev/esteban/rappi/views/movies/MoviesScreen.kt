@@ -26,6 +26,7 @@ import dev.esteban.rappi.utils.conditional
 @Composable
 fun MoviesScreen(
     viewModel: MoviesViewModel = hiltViewModel(),
+    onMovieClick: (movie: Movie) -> Unit
 ) {
     LaunchedEffect(Unit) {
         viewModel.getMovies()
@@ -39,13 +40,17 @@ fun MoviesScreen(
                 MovieSection(
                     title = stringResource(id = R.string.title_up_coming_movies),
                     movies = viewModel.uiState.upcomingMovies
-                )
+                ) { movie ->
+                    onMovieClick(movie)
+                }
             }
             item {
                 MovieSection(
                     title = stringResource(id = R.string.title_top_rated_movies),
                     movies = viewModel.uiState.topRatedMovies
-                )
+                ) { movie ->
+                    onMovieClick(movie)
+                }
             }
             viewModel.uiState.recommendedMovies?.let { recommendedMovies ->
                 item {
@@ -64,7 +69,9 @@ fun MoviesScreen(
                     RecommendedMoviesRow(
                         rowIndex = rowIndex,
                         recommendedMovies = recommendedMovies
-                    )
+                    ) { movie ->
+                        onMovieClick(movie)
+                    }
                 }
             }
 
@@ -93,12 +100,15 @@ fun MovieSection(
     title: String,
     movies: List<Movie>?,
     modifier: Modifier = Modifier,
+    onMovieClick: (movie: Movie) -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxSize()
     ) {
         Title(text = title)
-        MoviesRow(movies = movies)
+        MoviesRow(movies = movies) { movie ->
+            onMovieClick(movie)
+        }
     }
 }
 
@@ -106,6 +116,7 @@ fun MovieSection(
 fun MoviesRow(
     movies: List<Movie>?,
     modifier: Modifier = Modifier,
+    onMovieClick: (movie: Movie) -> Unit
 ) {
     LazyRow(
         modifier = modifier
@@ -120,8 +131,8 @@ fun MoviesRow(
                         .conditional(index != (movies.size - 1)) { padding(end = 12.dp) }
                         .width(138.dp)
                         .height(180.dp)
-                ) {
-
+                ) { movie ->
+                    onMovieClick(movie)
                 }
             }
         }
@@ -243,7 +254,8 @@ fun RecommendedMoviesHeader(
 @Composable
 fun RecommendedMoviesRow(
     recommendedMovies: List<Movie>,
-    rowIndex: Int
+    rowIndex: Int,
+    onMovieClick: (movie: Movie) -> Unit
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -258,8 +270,8 @@ fun RecommendedMoviesRow(
                         .padding(vertical = 12.dp, horizontal = 8.dp)
                         .width(156.dp)
                         .height(205.dp)
-                ) {
-
+                ) { movie ->
+                    onMovieClick(movie)
                 }
             } else {
                 Spacer(Modifier.weight(1F, fill = true))

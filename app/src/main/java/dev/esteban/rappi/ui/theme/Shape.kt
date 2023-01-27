@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.dp
 
 data class RappiShape(
 
-    val card: RoundedCornerShape = RoundedCornerShape(2.dp),
+    val card: RoundedCornerShape = RoundedCornerShape(4.dp),
 
     val small: RoundedCornerShape = RoundedCornerShape(8.dp),
 

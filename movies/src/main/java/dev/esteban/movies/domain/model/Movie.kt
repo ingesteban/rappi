@@ -1,7 +1,10 @@
 package dev.esteban.movies.domain.model
 
+import android.os.Parcelable
 import dev.esteban.movies.data.datasource.local.entity.MovieEntity
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Movie(
     val id: Int = 0,
     val adult: Boolean = false,
@@ -16,7 +19,7 @@ data class Movie(
     val video: Boolean = false,
     val voteAverage: Double = 0.0,
     val voteCount: Int = 0
-)
+) : Parcelable
 
 fun Movie.toEntity(type: MovieType) = MovieEntity(
     id = id,

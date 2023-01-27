@@ -8,4 +8,5 @@
     <string name="filter_released_at_default">Cualquier año</string>
     <string name="filter_language">En</string>
     <string name="filter_language_default">Cualquier idioma</string>
+    <string name="button_watch">Ver trailer</string>
 </resources>
