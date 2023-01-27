@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-data class UserUiState(
+data class MoviesUiState(
     val screenState: ScreenState = ScreenState.Empty,
     val errorMessage: String = String(),
     val upcomingMovies: List<Movie>? = null,
@@ -42,7 +42,7 @@ class MoviesViewModel @Inject constructor(
         const val DEFAULT_LANGUAGE_FILTER = "Cualquiera idioma"
     }
 
-    var uiState by mutableStateOf(UserUiState(screenState = ScreenState.Empty))
+    var uiState by mutableStateOf(MoviesUiState(screenState = ScreenState.Empty))
         private set
 
     private var recommendedMovies: List<Movie> = emptyList()

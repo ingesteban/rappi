@@ -5,5 +5,5 @@ import dev.esteban.movies.domain.model.MovieType
 
 interface MoviesRepository {
     suspend fun getMovies(type: MovieType): List<Movie>
-    suspend fun getMovieById(id: Int): Movie
+    suspend fun getMovieVideos(id: Int): String
 }

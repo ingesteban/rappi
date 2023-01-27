@@ -1,15 +1,13 @@
 package dev.esteban.rappi.views.movie
 
-import androidx.compose.animation.*
-import androidx.compose.animation.core.keyframes
-import androidx.compose.animation.core.tween
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Star
@@ -18,17 +16,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import dev.esteban.movies.domain.model.Movie
 import dev.esteban.rappi.R
 import dev.esteban.rappi.composecommon.DefaultButton
+import dev.esteban.rappi.composecommon.TextExpandable
 import dev.esteban.rappi.composecommon.TextWithBox
 import dev.esteban.rappi.composecommon.TextWithIcon
 import dev.esteban.rappi.ui.theme.RappiTheme
@@ -36,8 +34,19 @@ import dev.esteban.rappi.ui.theme.RappiTheme
 @Composable
 fun MovieScreen(
     movie: Movie?,
+    viewModel: MovieViewModel = hiltViewModel(),
+    context: Context = LocalContext.current,
     onClickBackButton: () -> Unit
 ) {
+    LaunchedEffect(viewModel.uiState.keyVideo) {
+        viewModel.uiState.keyVideo?.let { keyVideo ->
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.setPackage("com.google.android.youtube")
+            intent.data = Uri.parse("https://www.youtube.com/watch?v=$keyVideo")
+            context.startActivity(intent)
+        }
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
         AsyncImage(
             model = movie?.posterPath,
@@ -60,7 +69,7 @@ fun MovieScreen(
             onClick = onClickBackButton,
             modifier = Modifier
                 .align(Alignment.TopStart)
-                .padding(top = 32.dp, start = 16.dp)
+                .padding(16.dp)
         ) {
             Icon(
                 Icons.Filled.ArrowBack,
@@ -70,13 +79,21 @@ fun MovieScreen(
         }
 
         movie?.let {
-            MovieContent(it)
+            MovieContent(
+                movie = movie,
+                onClickWatchTrailer = { movieId ->
+                    viewModel.getMovieVideo(movieId)
+                }
+            )
         }
     }
 }
 
 @Composable
-fun MovieContent(movie: Movie) {
+fun MovieContent(
+    movie: Movie,
+    onClickWatchTrailer: (movieId: Int) -> Unit
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         var expanded by remember { mutableStateOf(false) }
         Column(
@@ -86,7 +103,7 @@ fun MovieContent(movie: Movie) {
                 .align(Alignment.BottomCenter)
         ) {
             TextExpandable(
-                text = movie.title.toString(),
+                text = movie.title,
                 textStyle = RappiTheme.typography.h4,
                 textAlign = TextAlign.Center,
                 expanded = expanded
@@ -104,63 +121,13 @@ fun MovieContent(movie: Movie) {
             }
 
             DefaultButton(text = stringResource(id = R.string.button_watch)) {
-
+                onClickWatchTrailer(movie.id)
             }
 
             TextExpandable(
                 text = movie.overview,
                 expanded = expanded
             )
-        }
-    }
-}
-
-@OptIn(ExperimentalAnimationApi::class)
-@Composable
-fun TextExpandable(
-    text: String,
-    textStyle: TextStyle = RappiTheme.typography.h2,
-    textAlign: TextAlign = TextAlign.Justify,
-    expanded: Boolean
-) {
-    Surface(color = Color.Transparent) {
-        AnimatedContent(
-            targetState = expanded,
-            transitionSpec = {
-                fadeIn(animationSpec = tween(150, 150)) with
-                        fadeOut(animationSpec = tween(150)) using
-                        SizeTransform { initialSize, targetSize ->
-                            if (targetState) {
-                                keyframes {
-                                    IntSize(targetSize.width, initialSize.height) at 150
-                                    durationMillis = 300
-                                }
-                            } else {
-                                keyframes {
-                                    IntSize(initialSize.width, targetSize.height) at 150
-                                    durationMillis = 300
-                                }
-                            }
-                        }
-            }
-        ) { targetExpanded ->
-            if (targetExpanded) {
-                Text(
-                    text = text,
-                    style = textStyle,
-                    textAlign = textAlign,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            } else {
-                Text(
-                    text = text,
-                    maxLines = 2,
-                    style = textStyle,
-                    textAlign = textAlign,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
         }
     }
 }

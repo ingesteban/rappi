@@ -17,6 +17,7 @@ android {
         buildConfigField "String", "IMAGE_BASE_URL", '"https://image.tmdb.org/t/p/w500/"'
         buildConfigField "String", "MOVIE_UPCOMING", '"movie/upcoming"'
         buildConfigField "String", "MOVIE_TOP_RATED", '"movie/top_rated"'
+        buildConfigField "String", "MOVIE_VIDEOS", '"movie/{movieId}/videos"'
 
         testInstrumentationRunner rootProject.ext.test.junitrunner
         consumerProguardFiles rootProject.ext.test.consumerrules

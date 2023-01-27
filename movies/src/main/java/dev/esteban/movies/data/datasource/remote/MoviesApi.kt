@@ -2,7 +2,7 @@ package dev.esteban.movies.data.datasource.remote
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dev.esteban.movies.data.datasource.remote.model.NetworkListMovies
-import dev.esteban.movies.data.datasource.remote.model.NetworkMovie
+import dev.esteban.movies.data.datasource.remote.model.NetworkListVideos
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -16,6 +16,7 @@ import javax.inject.Singleton
 import dev.esteban.movies.BuildConfig.BASE_URL
 import dev.esteban.movies.BuildConfig.MOVIE_UPCOMING
 import dev.esteban.movies.BuildConfig.MOVIE_TOP_RATED
+import dev.esteban.movies.BuildConfig.MOVIE_VIDEOS
 
 /**
  * Retrofit API declaration for Movies Network API
@@ -28,11 +29,8 @@ private interface MoviesApi {
     @GET(MOVIE_TOP_RATED)
     suspend fun getTopRated(): NetworkListMovies
 
-    @GET("movie/{movieId}")
-    suspend fun getMovieById(@Path("movieId") movieId: Int): NetworkMovie
-
-    @GET("movie/{movieId}/videos")
-    suspend fun getMovieVideosById(@Path("movieId") movieId: Int): NetworkListMovies
+    @GET(MOVIE_VIDEOS)
+    suspend fun getMovieVideosById(@Path("movieId") movieId: Int): NetworkListVideos
 }
 
 /**
@@ -75,9 +73,6 @@ class RetrofitMoviesNetwork @Inject constructor(networkJson: Json) : MoviesNetwo
 
     override suspend fun getTopRated(): NetworkListMovies = networkApi.getTopRated()
 
-    override suspend fun getMovieById(movieId: Int): NetworkMovie =
-        networkApi.getMovieById(movieId)
-
-    override suspend fun getMovieVideosById(movieId: Int): NetworkListMovies =
+    override suspend fun getMovieVideosById(movieId: Int): NetworkListVideos =
         networkApi.getMovieVideosById(movieId)
 }

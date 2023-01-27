@@ -31,6 +31,7 @@ ext {
                     'retrofitserialization': "0.8.0",
                     'kotlinserialization'  : "1.4.1",
                     'okhttp3'              : "4.10.0",
+                    'exoplayer'            : '2.12.1',
             ],
             'test'          : [
                     'junit'    : "4.13.2",
@@ -64,6 +65,10 @@ ext {
             'retrofit'             : "com.squareup.retrofit2:retrofit:${versions.libs.retrofit}",
             'retrofitserialization': "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${versions.libs.retrofitserialization}",
             'okhttp3'              : "com.squareup.okhttp3:logging-interceptor:${versions.libs.okhttp3}",
+            'exoplayercore'        : "com.google.android.exoplayer:exoplayer-core:${versions.libs.exoplayer}",
+            'exoplayerdash'        : "com.google.android.exoplayer:exoplayer-dash:${versions.libs.exoplayer}",
+            'exoplayerui'          : "com.google.android.exoplayer:exoplayer-ui:${versions.libs.exoplayer}",
+
     ]
     main = [
             'androidplugin': "com.android.tools.build:gradle:${versions.androidplugin}",

@@ -1,5 +1,7 @@
 package dev.esteban.rappi.views.movie
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
@@ -25,8 +27,11 @@ object MovieNavigation : ScreenNavigation {
         navBackStackEntry: NavBackStackEntry,
     ) {
         val movie = navBackStackEntry.arguments?.getParcelable<Movie>(MOVIE_DATA)
-        MovieScreen(movie = movie) {
-            navController.popBackStack()
-        }
+        MovieScreen(
+            movie = movie,
+            onClickBackButton = {
+                navController.popBackStack()
+            }
+        )
     }
 }

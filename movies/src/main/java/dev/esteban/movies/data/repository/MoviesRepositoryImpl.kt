@@ -38,7 +38,8 @@ class MoviesRepositoryImpl @Inject constructor(
         return movies
     }
 
-    override suspend fun getMovieById(id: Int): Movie {
-        return Movie()
+    override suspend fun getMovieVideos(id: Int): String {
+        val movieVideos = moviesNetworkDataSource.getMovieVideosById(id)
+        return movieVideos.results.first().key
     }
 }
