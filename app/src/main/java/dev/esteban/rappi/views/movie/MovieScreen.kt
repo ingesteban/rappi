@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
@@ -23,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import dev.esteban.common.utils.ScreenState
 import dev.esteban.movies.domain.model.Movie
 import dev.esteban.rappi.R
 import dev.esteban.rappi.composecommon.DefaultButton
@@ -44,6 +47,7 @@ fun MovieScreen(
             intent.setPackage("com.google.android.youtube")
             intent.data = Uri.parse("https://www.youtube.com/watch?v=$keyVideo")
             context.startActivity(intent)
+            viewModel.resetState()
         }
     }
 
@@ -76,6 +80,16 @@ fun MovieScreen(
                 contentDescription = null,
                 tint = Color.White
             )
+        }
+
+        if (viewModel.uiState.screenState == ScreenState.Loading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = RappiTheme.colors.blackTransparent1)
+            ) {
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            }
         }
 
         movie?.let {

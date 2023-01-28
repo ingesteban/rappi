@@ -39,7 +39,7 @@ class MoviesViewModel @Inject constructor(
     private companion object {
         const val RECOMMENDED_MOVIES = 6
         const val DEFAULT_YEAR_FILTER = "Cualquier año"
-        const val DEFAULT_LANGUAGE_FILTER = "Cualquiera idioma"
+        const val DEFAULT_LANGUAGE_FILTER = "Cualquier idioma"
     }
 
     var uiState by mutableStateOf(MoviesUiState(screenState = ScreenState.Empty))
@@ -61,6 +61,12 @@ class MoviesViewModel @Inject constructor(
             }
             processData(topRatedMovies, upcomingMovies)
         }
+    }
+
+    fun resetFilters() {
+        filterYear = "Cualquier año"
+        filterLanguage = "Cualquier idioma"
+        filterRecommendedMovies()
     }
 
     fun filterRecommendedMoviesByYear(year: String) {

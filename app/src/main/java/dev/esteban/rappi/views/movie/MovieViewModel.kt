@@ -40,6 +40,14 @@ class MovieViewModel @Inject constructor(
         }
     }
 
+    fun resetState() {
+        uiState = uiState.copy(
+            screenState = ScreenState.Empty,
+            errorMessage = String(),
+            keyVideo = null,
+        )
+    }
+
     private fun handleMovieVideo(keyVideo: String) {
         uiState = uiState.copy(
             screenState = ScreenState.Success,

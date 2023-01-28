@@ -64,16 +64,16 @@ dependencies {
     implementation rootProject.ext.libs.activitycompose
     implementation rootProject.ext.libs.composematerialicons
     implementation rootProject.ext.libs.navigationcompose
-
-    kapt rootProject.ext.libs.roomcompiler
+    implementation rootProject.ext.libs.navigationcompose
+    implementation rootProject.ext.libs.placeholder
 
     implementation rootProject.ext.libs.gson
-
     implementation rootProject.ext.libs.coilcompose
 
     implementation rootProject.ext.libs.hiltandroid
     implementation rootProject.ext.libs.hiltnavigationcompose
     kapt rootProject.ext.libs.hiltcompiler
+    kapt rootProject.ext.libs.roomcompiler
 
     testImplementation rootProject.ext.test.junit
     androidTestImplementation rootProject.ext.test.extJunit

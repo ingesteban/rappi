@@ -32,6 +32,7 @@ ext {
                     'kotlinserialization'  : "1.4.1",
                     'okhttp3'              : "4.10.0",
                     'exoplayer'            : '2.12.1',
+                    'placeholder'              : '0.29.0-alpha',
             ],
             'test'          : [
                     'junit'    : "4.13.2",
@@ -68,6 +69,7 @@ ext {
             'exoplayercore'        : "com.google.android.exoplayer:exoplayer-core:${versions.libs.exoplayer}",
             'exoplayerdash'        : "com.google.android.exoplayer:exoplayer-dash:${versions.libs.exoplayer}",
             'exoplayerui'          : "com.google.android.exoplayer:exoplayer-ui:${versions.libs.exoplayer}",
+            'placeholder'          : "com.google.accompanist:accompanist-placeholder-material:${versions.libs.placeholder}",
 
     ]
     main = [

@@ -30,8 +30,6 @@ fun Title(
         text = text,
         style = RappiTheme.typography.h1,
         modifier = modifier
-            .fillMaxWidth()
-            .padding(16.dp)
     )
 }
 

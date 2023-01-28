@@ -20,7 +20,6 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.Rappi">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,5 +32,4 @@
                 android:value="" />
         </activity>
     </application>
-
 </manifest>
