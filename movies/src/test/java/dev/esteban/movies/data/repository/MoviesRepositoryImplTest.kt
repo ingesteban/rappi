@@ -5,8 +5,7 @@ import dev.esteban.movies.data.datasource.remote.MoviesNetworkDataSource
 import dev.esteban.movies.data.datasource.remote.model.NetworkListVideos
 import dev.esteban.movies.data.datasource.remote.model.NetworkVideo
 import io.mockk.*
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertNotNull
+import junit.framework.TestCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
@@ -47,8 +46,8 @@ class MoviesRepositoryImplTest {
             result = repositoryImpl.getMovieVideos(MOVIE_ID)
         }
 
-        assertNotNull(result)
-        assertEquals(result, keyResponse)
+        TestCase.assertNotNull(result)
+        TestCase.assertEquals(result, keyResponse)
         coVerify { moviesNetworkDataSource.getMovieVideosById(MOVIE_ID) }
         verify { response.results }
         verify { results.firstOrNull() }
@@ -69,8 +68,8 @@ class MoviesRepositoryImplTest {
             result = repositoryImpl.getMovieVideos(MOVIE_ID)
         }
 
-        assertNotNull(result)
-        assertEquals(result, String())
+        TestCase.assertNotNull(result)
+        TestCase.assertEquals(result, String())
         coVerify { moviesNetworkDataSource.getMovieVideosById(MOVIE_ID) }
         verify { response.results }
         confirmVerified(moviesNetworkDataSource, response)
