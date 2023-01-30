@@ -15,16 +15,15 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class GetMovieVideoUseCaseTest {
     private lateinit var getMovieVideoUseCase: GetMovieVideoUseCase
 
     @MockK
     private lateinit var moviesRepository: MoviesRepository
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     private val testCoroutineDispatcher = UnconfinedTestDispatcher()
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setupBase() {
         Dispatchers.setMain(testCoroutineDispatcher)

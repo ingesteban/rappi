@@ -17,6 +17,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class GetMoviesUseCaseTest {
 
     private lateinit var getMoviesUseCase: GetMoviesUseCase
@@ -24,10 +25,8 @@ class GetMoviesUseCaseTest {
     @MockK
     private lateinit var moviesRepository: MoviesRepository
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     private val testCoroutineDispatcher = UnconfinedTestDispatcher()
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setupBase() {
         Dispatchers.setMain(testCoroutineDispatcher)
@@ -35,7 +34,6 @@ class GetMoviesUseCaseTest {
         getMoviesUseCase = GetMoviesUseCase(testCoroutineDispatcher, moviesRepository)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun shouldGetMoviesUpComing() = runBlocking {
         var result: Result<List<Movie>>? = null
@@ -54,7 +52,6 @@ class GetMoviesUseCaseTest {
         confirmVerified(moviesRepository, listMoviesResponse)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun shouldGetMoviesTopRated() = runBlocking {
         var result: Result<List<Movie>>? = null

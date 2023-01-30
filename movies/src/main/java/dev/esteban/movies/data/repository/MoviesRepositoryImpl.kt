@@ -1,8 +1,8 @@
 package dev.esteban.movies.data.repository
 
 import dev.esteban.movies.data.datasource.local.dao.MoviesDao
-import dev.esteban.movies.data.datasource.remote.MoviesNetworkDataSource
 import dev.esteban.movies.data.datasource.local.entity.toDomain
+import dev.esteban.movies.data.datasource.remote.MoviesNetworkDataSource
 import dev.esteban.movies.data.datasource.remote.model.toDomain
 import dev.esteban.movies.domain.model.Movie
 import dev.esteban.movies.domain.model.MovieType
@@ -40,6 +40,6 @@ class MoviesRepositoryImpl @Inject constructor(
 
     override suspend fun getMovieVideos(id: Int): String {
         val movieVideos = moviesNetworkDataSource.getMovieVideosById(id)
-        return movieVideos.results.first().key
+        return movieVideos.results.firstOrNull()?.key ?: String()
     }
 }
